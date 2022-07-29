@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grep coin</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.14.0/dist/phaser.min.js"></script>
+</head>
+<body>
+    <h1>Coin Grepper</h1>
+    <div id="game"></div>
+
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+    import { auth } from 'https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js'
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js"
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDBsqbO2N5byFKoXdpV1vswuZvXIQYQPDs",
+        authDomain: "coin-grepper.firebaseapp.com",
+        databaseURL: "https://coin-grepper-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "coin-grepper",
+        storageBucket: "coin-grepper.appspot.com",
+        messagingSenderId: "234885842533",
+        appId: "1:234885842533:web:39a356825611dcab5c688c"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    </script>
+    <script src="game.js"></script>
+</body>
+</html>
