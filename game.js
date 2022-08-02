@@ -1,10 +1,10 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
     import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js'
-    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js"
+    import { getDatabase, ref, set, onDisconnect } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js"
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
-    
+    import { createName, playerColours } from "./helpers.js"
     // Your web app's Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyDBsqbO2N5byFKoXdpV1vswuZvXIQYQPDs",
@@ -39,17 +39,21 @@ class mainScene {
             console.log(user);
             if (user) {
               playerId = user.uid;
-              //playerRef = ref('players/${playerId}');
+
+              const name = createName();
 
               set(ref(db, 'players/' + playerId), {
                 id: playerId,
-                name: "Testy",
-                color: "blue",
+                name: name,
+                color: playerColours(),
                 x: 3,
                 y: 3,
                 coins: 0,
               });
               
+              playerRef = ref(db, 'players/' + playerId);
+              // delete player from firebase when they logout
+              onDisconnect(playerRef).remove();
 
             } else {
               // User is signed out
